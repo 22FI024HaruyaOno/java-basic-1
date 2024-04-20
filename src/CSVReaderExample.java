@@ -1,6 +1,8 @@
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class CSVReaderExample {
 public static void main(String[] args) {
@@ -14,7 +16,9 @@ String csvSplitBy = ","; // CSVファイルの区切り文字を指定してく�
             String[] words = line.split(csvSplitBy);
             // 単語を一つずつ出力
             for (String word : words) {
-                if (word.contains("区")) {
+                Pattern pattern = Pattern.compile(".+区");
+                Matcher matcher = pattern.matcher(word);
+                if (matcher.find()) {
                     System.out.println(word);
                 }
             }
