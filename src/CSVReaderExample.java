@@ -16,6 +16,7 @@ String csvSplitBy = ","; // CSVファイルの区切り文字を指定してく�
             String[] words = line.split(csvSplitBy);
             // 単語を一つずつ出力
             for (String word : words) {
+                //Patternクラスで正規表現
                 Pattern pattern = Pattern.compile(".+区");
                 Matcher matcher = pattern.matcher(word);
                 if (matcher.find()) {
