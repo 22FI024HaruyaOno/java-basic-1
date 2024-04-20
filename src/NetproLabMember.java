@@ -20,14 +20,25 @@ public class NetproLabMember {
             System.out.println("女子総数:" + DendaiNumbers[i][DendaiWomanNumber]);
             System.out.println("研究室配属人数:" + DendaiNumbers[i][IwaiLabNumber]);
         }
-        double probability = 1;
+        float probability = 1;
+        for(int i = 0; i < DendaiNumbers.length; i ++) {
+            probability *= Combi(DendaiNumbers[i][DendaiAllNumber] - DendaiNumbers[i][DendaiWomanNumber], DendaiNumbers[i][IwaiLabNumber]);
+            probability /= Combi(DendaiNumbers[i][DendaiAllNumber], DendaiNumbers[i][IwaiLabNumber]);
+        }
+        System.err.println("15年連続岩井研に来ない確率は" + (probability*100) + "%");
     }
 
-    public double Combi(int A, int B) {
-        double result = 0;
-        for(int i = 1; i <= B; i ++) {
-            
+    public static float Combi(int A, int B) {
+        float result;
+        float bunbo = 1;
+        float bunsi = 1;
+        int j = A;
+        for(int i = B; i >= 1; i --) {
+            bunbo *= i;
+            bunsi *= j;
+            j --;
         }
+        result = bunsi / bunbo;
         return result;
     }
 }
